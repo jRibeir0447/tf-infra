@@ -12,7 +12,7 @@ resource "random_integer" "ri" {
 
 resource "azurerm_linux_web_app" "tfapp" {
   count = var.num
-  name                = "tfapp-${random_integer.ri.result + count.index}"
+  name                = "mytfapp-${random_integer.ri.result + count.index}"
   resource_group_name = "myTFResourceGroup"
   location            = "westeurope"
   service_plan_id     = var.plan_id
