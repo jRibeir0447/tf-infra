@@ -35,6 +35,8 @@ stages:
 
 - stage: Deploy
   displayName: 'Terraform Apply'
+  variables:
+  - group: 'tf_stg_acc'
   jobs:
   - job: TerraformApply
     displayName: 'Terraform Apply'
