@@ -52,7 +52,7 @@ stages:
         scriptLocation: 'inlineScript'
         inlineScript: |
           terraform --version
-          Write-Host "init -backend-config="storage_account_name=$(storageAccountName)" -backend-config="container_name=$(containerName)" -backend-config="key=$(key)" -backend-config="access_key=$(accessKey)"
+          Write-Host "init -backend-config="storage_account_name=$(storageAccountName)" -backend-config="container_name=$(containerName)" -backend-config="key=$(key)" -backend-config="access_key=$(accessKey)""
           terraform init -backend-config="storage_account_name=$(storageAccountName)" -backend-config="container_name=$(containerName)" -backend-config="key=$(key)" -backend-config="access_key=$(accessKey)"
           terraform apply -auto-approve
       displayName: 'Terraform Init and Apply'
