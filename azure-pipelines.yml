@@ -21,6 +21,7 @@ stages:
         terraformVersion: '1.5.7'
 
     - script: |
+        az login
         terraform --version
         terraform init -backend-config="storage_account_name=$(storageAccountName)" -backend-config="container_name=$(containerName)" -backend-config="key=$(key)" -backend-config="access_key=$(accessKey)"
         terraform plan -out=tfplan
