@@ -41,10 +41,15 @@ stages:
     steps:
     - task: TerraformInstaller@0
       inputs:
-        terraformVersion: 'latest'
+        terraformVersion: '1.5.7'
 
-    - script: |
-        terraform --version
-        terraform init -backend-config="storage_account_name=$(storageAccountName)" -backend-config="container_name=$(containerName)" -backend-config="key=$(key)" -backend-config="access_key=$(accessKey)"
-        terraform apply -auto-approve
+    - task: AzureCLI@2
+      inputs:
+        azureSubscription: 'az_pipelines'
+        scriptType: 'ps'
+        scriptLocation: 'inlineScript'
+        inlineScript: |
+          terraform --version
+          terraform init -backend-config="storage_account_name=$(storageAccountName)" -backend-config="container_name=$(containerName)" -backend-config="key=$(key)" -backend-config="access_key=$(accessKey)"
+          terraform apply -auto-approve
       displayName: 'Terraform Init and Apply'
