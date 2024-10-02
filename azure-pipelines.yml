@@ -19,7 +19,7 @@ stages:
       - task: AzureCLI@2
         inputs:
           azureSubscription: 'az_pipelines'
-          scriptType: 'bash'
+          scriptType: 'ps'
           scriptLocation: 'inlineScript'
           inlineScript: |
             az account show
