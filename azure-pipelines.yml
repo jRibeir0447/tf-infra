@@ -12,6 +12,8 @@ pool:
 stages:
 - stage: Plan
   displayName: 'Terraform Plan'
+  variables:
+  - group: 'tf_stg_acc'
   jobs:
   - job: TerraformPlan
     displayName: 'Terraform Plan'
