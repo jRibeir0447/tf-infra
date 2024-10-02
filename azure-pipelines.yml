@@ -33,12 +33,17 @@ stages:
     - task: TerraformInstaller@0
       inputs:
         terraformVersion: '1.5.7'
-
-    - script: |
-        terraform --version
-        terraform init -backend-config="storage_account_name=$(storageAccountName)" -backend-config="container_name=$(containerName)" -backend-config="key=$(key)" -backend-config="access_key=$(accessKey)"
-        terraform plan -out=tfplan
-      displayName: 'Terraform Init and Plan'
+    
+    - task: AzureCLI@2
+      inputs:
+        azureSubscription: 'az_pipelines'
+        scriptType: 'ps'
+        scriptLocation: 'inlineScript'
+        inlineScript: |
+          az account show
+          terraform --version
+          terraform init -backend-config="storage_account_name=$(storageAccountName)" -backend-config="container_name=$(containerName)" -backend-config="key=$(key)" -backend-config="access_key=$(accessKey)"
+          terraform plan -out=tfplan
 
 - stage: Deploy
   displayName: 'Terraform Apply'
