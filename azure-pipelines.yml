@@ -10,20 +10,6 @@ pool:
   name: 'Default'
 
 stages:
-- stage: acc
-  displayName: 'Account login'
-  jobs:
-    - job: acclogin
-      displayName: 'Account login'
-      steps:
-      - task: AzureCLI@2
-        inputs:
-          azureSubscription: 'az_pipelines'
-          scriptType: 'ps'
-          scriptLocation: 'inlineScript'
-          inlineScript: |
-            az account show
-
 - stage: Plan
   displayName: 'Terraform Plan'
   jobs:
