@@ -12,7 +12,12 @@ resource "azurerm_subnet" "app_subnet" {
   virtual_network_name = azurerm_virtual_network.appsvc_vnet.name
   address_prefixes    = ["10.0.1.0/24"]
 
-  service_delegation {
+  delegation {
+    name = "delegation"
+
+    service_delegation {
     name = "Microsoft.Web/serverFarms"
+    }
   }
+
 }
