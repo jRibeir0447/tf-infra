@@ -57,6 +57,7 @@ module "appsvc" {
   stg_acc_name = module.stg_acc.stgAccName
   shr_name = module.stg_acc.shareName
 
-  subnet_id = module.vnet.subnet_id
+  for_each = toset(module.vnet.subnet_ids)
+  subnet_id = each.value
 
 }
