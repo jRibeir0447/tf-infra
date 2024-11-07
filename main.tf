@@ -37,8 +37,17 @@ module "stg_acc" {
   rg_name = module.rg.rg_name
 }
 
+module "vnet" {
+  depends_on = [ module.appsvc ]
+  source = "./modules/vnet"
+
+  plan_name = module.appsvc_plan.svc_plan_name
+  plan_location = module.appsvc_plan.location
+  rg_name = module.rg.rg_name
+}
+
 module "appsvc" {
-  depends_on = [ module.stg_acc ]
+  depends_on = [ module.stg_acc, module.vnet ]
   source  = "./modules/appsvc"
 
   plan_id = module.appsvc_plan.svc_plan_id
@@ -47,5 +56,7 @@ module "appsvc" {
   acc_k = module.stg_acc.conn_str
   stg_acc_name = module.stg_acc.stgAccName
   shr_name = module.stg_acc.shareName
+
+  subnet_id = module.vnet.subnet_id
 
 }

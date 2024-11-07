@@ -17,3 +17,7 @@ variable "stg_acc_name" {
 variable "shr_name" {
   type = string
 }
+
+variable "subnet_id" {
+  type = string
+}

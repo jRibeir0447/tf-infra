@@ -16,6 +16,8 @@ resource "azurerm_linux_web_app" "tfapp" {
   resource_group_name = "myTFResourceGroup"
   location            = "westeurope"
   service_plan_id     = var.plan_id
+
+  virtual_network_subnet_id = var.subnet_id
   storage_account {
     access_key = var.acc_k
     account_name = var.stg_acc_name
