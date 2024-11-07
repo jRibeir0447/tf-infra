@@ -3,5 +3,5 @@ output "vnet_id" {
 }
 
 output "subnet_ids" {
-  value = azurerm_virtual_network.appsvc_vnet.subnets
+  value = azurerm_virtual_network.appsvc_vnet.subnet
 }
