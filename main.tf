@@ -38,7 +38,7 @@ module "stg_acc" {
 }
 
 module "vnet" {
-  depends_on = [ module.appsvc_plan, module.rg ]
+  depends_on = [ module.appsvc_plan ]
   source = "./modules/vnet"
 
   plan_name = module.appsvc_plan.svc_plan_name
