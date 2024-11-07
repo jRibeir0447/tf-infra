@@ -10,5 +10,5 @@ resource "azurerm_subnet" "app_subnet" {
   name                 = "subnet1"
   resource_group_name  = var.rg_name
   virtual_network_name = azurerm_virtual_network.appsvc_vnet.name
-  address_prefix    = "10.0.1.0/24"
+  address_prefixes    = ["10.0.1.0/24"]
 }
